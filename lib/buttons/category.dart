@@ -21,7 +21,6 @@ class _CategoryBtnState extends State<CategoryBtn> {
         widget.typeId == context.watch<CategoryState>().currentType
             ? 55.0
             : 45.0;
-    ;
 
     ColorFilter? colored =
         widget.typeId != context.watch<CategoryState>().currentType
@@ -45,27 +44,31 @@ class _CategoryBtnState extends State<CategoryBtn> {
             shape: BoxShape.circle,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(6.0),
+            padding: const EdgeInsets.all(7.0),
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
               },
-              child: AnimatedSize(
-                duration: const Duration(milliseconds: 1000),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
                 curve: Curves.fastOutSlowIn,
-                child: Container(
-                  width: categorySize,
-                  height: categorySize,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: const AssetImage('assets/images/plastics.jpg'),
-                      scale: 1.5,
-                      fit: BoxFit.cover,
-                      colorFilter: colored,
-                    ),
-                    shape: BoxShape.circle,
+                width: categorySize,
+                height: categorySize,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: const NetworkImage(
+                        'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
+                    fit: BoxFit.fitWidth,
+                    colorFilter: colored,
                   ),
+                  shape: BoxShape.circle,
                 ),
+
+                // child: const CircleAvatar(
+                //   radius: 20,
+                //   backgroundImage: NetworkImage(
+                //       'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
+                // ),
               ),
             ),
           ),
