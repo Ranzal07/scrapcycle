@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:pricelist/pricelist.dart';
+import 'package:provider/provider.dart';
+import 'package:pricelist/providers/category_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CategoryState()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

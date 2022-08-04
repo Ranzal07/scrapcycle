@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pricelist/appbar.dart';
-import 'package:pricelist/buttons/category.dart';
+import 'package:pricelist/category_bar.dart';
 
 class PriceList extends StatefulWidget {
   PriceList({Key? key}) : super(key: key);
@@ -47,16 +47,7 @@ class _PriceListState extends State<PriceList> {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                CategoryBtn(categoryName: 'Plastic'),
-                CategoryBtn(categoryName: 'Glass'),
-                CategoryBtn(categoryName: 'Metal'),
-                CategoryBtn(categoryName: 'Carton'),
-                CategoryBtn(categoryName: 'E-Waste'),
-              ],
-            ),
+            CategoryBar(),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: SizedBox(
