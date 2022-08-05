@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "793574077319",
+    "project_id": "scrapcycle-60418",
+    "storage_bucket": "scrapcycle-60418.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793574077319:android:f47dfba014643110f19922",
+        "android_client_info": {
+          "package_name": "scrapcycle.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793574077319-uic3tk7nl9l9h7n2sc032bf464g036nq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe8OqRQVG6l8w-R7N3e-J86aXVIYhQqAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793574077319-uic3tk7nl9l9h7n2sc032bf464g036nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

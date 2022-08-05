@@ -32,6 +32,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   provider: ^6.0.3
+  faker: ^2.0.0
+  cloud_firestore: ^3.4.3
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +61,7 @@ flutter:
   assets:
     - assets/images/pricelist-header.png
     - assets/images/plastics.jpg
+    - assets/data/pricelist.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

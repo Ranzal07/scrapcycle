@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 
 class CategoryBtn extends StatefulWidget {
-  const CategoryBtn(
-      {Key? key, required this.categoryName, required this.typeId})
-      : super(key: key);
+  const CategoryBtn({
+    Key? key,
+    required this.categoryName,
+    required this.typeId,
+    required this.image,
+  }) : super(key: key);
 
   final String categoryName;
   final int typeId;
+  final String image;
 
   @override
   State<CategoryBtn> createState() => _CategoryBtnState();
 }
 
 class _CategoryBtnState extends State<CategoryBtn> {
+  Future getList() async {
+    String response = await rootBundle.loadString('assets/data/pricelist.json');
+    print(response);
+  }
+
   @override
   Widget build(BuildContext context) {
     double categorySize =
@@ -24,7 +34,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
 
     ColorFilter? colored =
         widget.typeId != context.watch<CategoryState>().currentType
-            ? const ColorFilter.mode(Colors.grey, BlendMode.saturation)
+            ? const ColorFilter.mode(Colors.grey, BlendMode.screen)
             : null;
 
     Color colorActive =
@@ -48,6 +58,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
+                getList();
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
@@ -56,19 +67,12 @@ class _CategoryBtnState extends State<CategoryBtn> {
                 height: categorySize,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: const NetworkImage(
-                        'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
-                    fit: BoxFit.fitWidth,
+                    image: NetworkImage(widget.image),
+                    fit: BoxFit.cover,
                     colorFilter: colored,
                   ),
                   shape: BoxShape.circle,
                 ),
-
-                // child: const CircleAvatar(
-                //   radius: 20,
-                //   backgroundImage: NetworkImage(
-                //       'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
-                // ),
               ),
             ),
           ),
