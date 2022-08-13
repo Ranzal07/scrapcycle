@@ -8,6 +8,5 @@ class CategoryState with ChangeNotifier {
   void setType(int newType) {
     _currentType = newType;
     notifyListeners();
-    print(newType);
   }
 }
