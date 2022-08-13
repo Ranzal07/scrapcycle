@@ -1,41 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:pricelist/firebase_crud.dart';
-=======
-import 'package:flutter/services.dart';
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 
 class CategoryBtn extends StatefulWidget {
-  const CategoryBtn({
-    Key? key,
-    required this.categoryName,
-    required this.typeId,
-    required this.image,
-  }) : super(key: key);
+  const CategoryBtn(
+      {Key? key, required this.categoryName, required this.typeId})
+      : super(key: key);
 
   final String categoryName;
   final int typeId;
-  final String image;
 
   @override
   State<CategoryBtn> createState() => _CategoryBtnState();
 }
 
 class _CategoryBtnState extends State<CategoryBtn> {
-<<<<<<< HEAD
   final Stream<QuerySnapshot> collectionReference =
       FirebaseCrud.readPricelist();
 
   void printCollection() => print(collectionReference);
-=======
-  Future getList() async {
-    String response = await rootBundle.loadString('assets/data/pricelist.json');
-    print(response);
-  }
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +31,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
 
     ColorFilter? colored =
         widget.typeId != context.watch<CategoryState>().currentType
-            ? const ColorFilter.mode(Colors.grey, BlendMode.screen)
+            ? const ColorFilter.mode(Colors.grey, BlendMode.saturation)
             : null;
 
     Color colorActive =
@@ -70,11 +55,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
-<<<<<<< HEAD
                 printCollection();
-=======
-                getList();
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
@@ -83,12 +64,19 @@ class _CategoryBtnState extends State<CategoryBtn> {
                 height: categorySize,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(widget.image),
-                    fit: BoxFit.cover,
+                    image: const NetworkImage(
+                        'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
+                    fit: BoxFit.fitWidth,
                     colorFilter: colored,
                   ),
                   shape: BoxShape.circle,
                 ),
+
+                // child: const CircleAvatar(
+                //   radius: 20,
+                //   backgroundImage: NetworkImage(
+                //       'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
+                // ),
               ),
             ),
           ),
