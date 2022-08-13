@@ -17,11 +17,6 @@ class CategoryBtn extends StatefulWidget {
 }
 
 class _CategoryBtnState extends State<CategoryBtn> {
-  final Stream<QuerySnapshot> collectionReference =
-      FirebaseCrud.readPricelist();
-
-  void printCollection() => print(collectionReference);
-
   @override
   Widget build(BuildContext context) {
     double categorySize =
@@ -55,7 +50,6 @@ class _CategoryBtnState extends State<CategoryBtn> {
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
-                printCollection();
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
