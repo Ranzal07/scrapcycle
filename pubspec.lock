@@ -42,33 +42,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "3.4.4"
-=======
-    version: "3.4.3"
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "5.7.1"
-=======
-    version: "5.7.0"
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "2.8.4"
-=======
-    version: "2.8.3"
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
   collection:
     dependency: transitive
     description:
@@ -97,13 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
-  faker:
-    dependency: "direct main"
-    description:
-      name: faker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   ffi:
     dependency: transitive
     description:
@@ -119,20 +100,12 @@ packages:
     source: hosted
     version: "6.1.2"
   firebase_core:
-<<<<<<< HEAD
     dependency: "direct main"
-=======
-    dependency: transitive
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "1.20.1"
-=======
-    version: "1.20.0"
->>>>>>> e59fb8bcd3b78f7ccd9f82e44ebcd55bd1ac59ce
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -252,7 +225,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.17"
+    version: "2.0.19"
   path_provider_ios:
     dependency: transitive
     description:
@@ -287,7 +260,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.2"
   platform:
     dependency: transitive
     description:

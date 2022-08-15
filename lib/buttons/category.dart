@@ -6,10 +6,14 @@ import 'package:pricelist/providers/category_provider.dart';
 
 class CategoryBtn extends StatefulWidget {
   const CategoryBtn(
-      {Key? key, required this.categoryName, required this.typeId})
+      {Key? key,
+      required this.categoryName,
+      required this.typeId,
+      required this.imageBtn})
       : super(key: key);
 
   final String categoryName;
+  final String imageBtn;
   final int typeId;
 
   @override
@@ -21,8 +25,8 @@ class _CategoryBtnState extends State<CategoryBtn> {
   Widget build(BuildContext context) {
     double categorySize =
         widget.typeId == context.watch<CategoryState>().currentType
-            ? 55.0
-            : 45.0;
+            ? 65.0
+            : 53.0;
 
     ColorFilter? colored =
         widget.typeId != context.watch<CategoryState>().currentType
@@ -37,7 +41,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
     return Column(
       children: [
         Container(
-          height: 70,
+          height: 85,
           decoration: BoxDecoration(
             border: Border.all(
               color: colorActive,
@@ -46,7 +50,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
             shape: BoxShape.circle,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(7.0),
+            padding: const EdgeInsets.all(9.0),
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
@@ -58,19 +62,12 @@ class _CategoryBtnState extends State<CategoryBtn> {
                 height: categorySize,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: const NetworkImage(
-                        'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
-                    fit: BoxFit.fitWidth,
+                    image: NetworkImage(widget.imageBtn),
+                    fit: BoxFit.cover,
                     colorFilter: colored,
                   ),
                   shape: BoxShape.circle,
                 ),
-
-                // child: const CircleAvatar(
-                //   radius: 20,
-                //   backgroundImage: NetworkImage(
-                //       'https://i.pinimg.com/564x/bb/e5/04/bbe504471088ce20726a635395698d89.jpg'),
-                // ),
               ),
             ),
           ),

@@ -5,7 +5,8 @@ import 'package:pricelist/appbar.dart';
 import 'package:pricelist/category_bar.dart';
 import 'package:pricelist/firebase_crud.dart';
 import 'package:pricelist/item.dart';
-import 'package:pricelist/models/price.dart';
+import 'package:provider/provider.dart';
+import 'package:pricelist/providers/category_provider.dart';
 
 class PriceList extends StatefulWidget {
   PriceList({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class _PriceListState extends State<PriceList> {
   Color myColor = const Color.fromARGB(255, 39, 174, 95);
   Color darkGrey = const Color(0xff828282);
 
-  List<String> itemNames = ["plastic cups", "cartons", "PET bottles"];
   List<String> examples = [
     "plastic cups, hsdjklfjsd, sjdfgkf, sadlifhailsfd",
     "cartons, sjdkfgksdf, sadfghksdf, sajkfdgsdf",
@@ -31,6 +31,10 @@ class _PriceListState extends State<PriceList> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> itemNames = context.watch<CategoryState>().itemNames;
+    List<String> examples = context.watch<CategoryState>().examples;
+    List<String> values = context.watch<CategoryState>().values;
+
     return Scaffold(
       appBar: const AppBarScrapCycle(titleStr: 'price list'),
       body: Container(
