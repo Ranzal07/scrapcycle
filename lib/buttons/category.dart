@@ -25,8 +25,8 @@ class _CategoryBtnState extends State<CategoryBtn> {
   Widget build(BuildContext context) {
     double categorySize =
         widget.typeId == context.watch<CategoryState>().currentType
-            ? 65.0
-            : 53.0;
+            ? 55.0
+            : 43.0;
 
     ColorFilter? colored =
         widget.typeId != context.watch<CategoryState>().currentType

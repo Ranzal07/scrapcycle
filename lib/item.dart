@@ -52,9 +52,12 @@ class _ItemState extends State<Item> {
                 widget.itemName,
                 textAlign: TextAlign.center,
               ),
-              Text(
-                widget.examples,
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  widget.examples,
+                  textAlign: TextAlign.center,
+                ),
               ),
               Text(
                 widget.value,

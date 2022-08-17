@@ -32,10 +32,15 @@ class _CategoryBarState extends State<CategoryBar> {
               'https://images.pexels.com/photos/4593026/pexels-photo-4593026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         ),
         CategoryBtn(
-            categoryName: 'Carton',
+            categoryName: 'Battery',
             typeId: 4,
             imageBtn:
-                'https://images.pexels.com/photos/1555199/pexels-photo-1555199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                'https://s.alicdn.com/@sc04/kf/U01beb17b43164ab49f3f347fa77a4e04i.jpg_300x300.jpg'),
+        CategoryBtn(
+            categoryName: 'E-Waste',
+            typeId: 5,
+            imageBtn:
+                'https://5.imimg.com/data5/LK/QW/GLADMIN-6387176/printed-circuit-boards-scrap-500x500.png'),
       ],
     );
   }

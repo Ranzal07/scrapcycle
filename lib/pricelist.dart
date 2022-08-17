@@ -22,12 +22,10 @@ class _PriceListState extends State<PriceList> {
   Color myColor = const Color.fromARGB(255, 39, 174, 95);
   Color darkGrey = const Color(0xff828282);
 
+  List<String> values = ["9.00 / kg"];
   List<String> examples = [
-    "plastic cups, hsdjklfjsd, sjdfgkf, sadlifhailsfd",
-    "cartons, sjdkfgksdf, sadfghksdf, sajkfdgsdf",
-    "PET bottles, jsadgff, sjdfksadf, askjdguasgd"
+    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle"
   ];
-  List<String> values = ["3.00 / kg", "12.00 / kg", "10.00 / kg"];
 
   @override
   Widget build(BuildContext context) {
