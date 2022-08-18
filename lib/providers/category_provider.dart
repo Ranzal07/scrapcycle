@@ -9,8 +9,8 @@ class CategoryState with ChangeNotifier {
   ];
   List<String> _values = [
     "1.25 / kg",
-    "0.40 / kg",
     "1.50 / kg",
+    "0.40 / kg",
   ];
   List<String> _examples = [
     "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
@@ -31,8 +31,8 @@ class CategoryState with ChangeNotifier {
   ];
   List<String> values1 = [
     "1.25 / kg",
-    "0.40 / kg",
     "1.50 / kg",
+    "0.40 / kg",
   ];
 
 // glass
