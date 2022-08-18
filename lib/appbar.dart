@@ -12,7 +12,7 @@ class AppBarScrapCycle extends StatelessWidget with PreferredSizeWidget {
     Color myColor = const Color.fromARGB(255, 39, 174, 95);
 
     return SizedBox(
-      height: 85.0,
+      height: 120.0,
       child: AppBar(
         backgroundColor: myColor,
         centerTitle: true,

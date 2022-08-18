@@ -3,34 +3,34 @@ import 'package:flutter/material.dart';
 class CategoryState with ChangeNotifier {
   int _currentType = 1;
   List<String> _itemNames = [
-    "assorted",
-    "monobloc",
+    "low density plastic",
+    "high density plastic",
     "plastic bottle 1 litre",
   ];
   List<String> _values = [
-    "3.50 / kg",
+    "1.25 / kg",
     "0.40 / kg",
     "1.50 / kg",
   ];
   List<String> _examples = [
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
+    "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
+    "monobloc chairs, hangers, shampoo bottles, water jugs, etc.",
+    "1.5 litres beverage plastic bottles",
   ];
 
 // plastics
   List<String> itemNames1 = [
-    "assorted",
-    "monobloc",
+    "low density plastic",
+    "high density plastic",
     "plastic bottle 1 litre",
   ];
   List<String> examples1 = [
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "plastic cups, water bottles, water jugs, coke mismo, sprite mismo, 250ml royal bottle, etc.",
+    "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
+    "monobloc chairs, hangers, shampoo bottles, water jugs, etc.",
+    "1.5 litres beverage plastic bottles",
   ];
   List<String> values1 = [
-    "3.50 / kg",
+    "1.25 / kg",
     "0.40 / kg",
     "1.50 / kg",
   ];
@@ -95,33 +95,31 @@ class CategoryState with ChangeNotifier {
     "assorted",
     "solid",
     "light",
-    "light bulb (pundido)",
-    "aluminum can",
+    "light bulb",
+    "tin can",
     "sin roof",
-    "mono",
     "alloy",
-    "alloy T",
-    "cooking pot (caldero)",
-    "cans",
-    "lead (tingga)",
+    "alloy mixed",
+    "cooking pot",
+    "aluminum can",
+    "lead",
     "copper",
     "brass",
   ];
   List<String> examples3 = [
-    "thin metals",
+    "light/thin metals",
     "heavy/thick metals",
     "steel plate metal",
-    "light bulbs",
-    "??",
+    "light bulbs (pundido)",
+    "sardines can, tuna can, etc.",
     "corrugated roofing material",
-    "??",
     "steel/bronze",
-    "steel/bronze",
+    "steel/bronze mixed with other materials",
     "caldero",
-    "??",
-    "lead sinker",
-    "copper",
-    "brass",
+    "beverage cans, spray cans, etc.",
+    "lead sinker (tingga)",
+    "copper tubing, electric cords, etc.",
+    "locks, hinges, zippers, drawer knobs, etc.",
   ];
   List<String> values3 = [
     "5.20 / kg",
@@ -130,7 +128,6 @@ class CategoryState with ChangeNotifier {
     "2.80 / kg",
     "1.50 / kg",
     "2.00 / kg",
-    "1.50 / kg",
     "18.00 / kg",
     "12.00 / kg",
     "12.00 / kg",
