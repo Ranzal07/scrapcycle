@@ -22,7 +22,7 @@ class AppBarScrapCycle extends StatelessWidget with PreferredSizeWidget {
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(11.0),
+            bottom: Radius.circular(20.0),
           ),
         ),
         title: Text(

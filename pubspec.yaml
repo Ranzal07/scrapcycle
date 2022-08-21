@@ -34,6 +34,7 @@ dependencies:
   provider: ^6.0.3
   cloud_firestore: ^3.4.4
   firebase_core: ^1.20.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -60,7 +61,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/pricelist-header.png
+    - assets/images/home-header.png
+    - assets/images/playground.png
     - assets/images/plastics.jpg
+    - assets/images/truck.png
+    - assets/images/pending-truck.png
     - assets/data/pricelist.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,11 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pricelist/appBars/appbar.dart';
+import 'package:pricelist/appBars/homebar.dart';
 import 'package:pricelist/appBars/profilebar.dart';
-import 'package:pricelist/nav_bar.dart';
+import 'package:pricelist/pages/body.dart';
+import 'package:pricelist/pages/pending.dart';
 import 'package:pricelist/pages/pricelist.dart';
 import 'package:pricelist/pages/profile.dart';
 import 'package:pricelist/pages/schedule.dart';
+import 'package:pricelist/providers/change_notifier.dart';
+import 'package:pricelist/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 import 'package:pricelist/providers/address_provider.dart';
@@ -17,27 +21,19 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CategoryState()),
-        ChangeNotifierProvider(create: (_) => Address())
+        ChangeNotifierProvider(create: (_) => Address()),
+        ChangeNotifierProvider(create: (_) => HomeState()),
+        ChangeNotifierProvider(create: (_) => ChangePage()),
       ],
-      child: const MyApp(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: const Home(),
+      ),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: Home(),
-    );
-  }
 }
 
 class Home extends StatefulWidget {
@@ -48,36 +44,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _bodyOptions = [
-    const Schedule(),
-    PriceList(),
-    const Profile(),
-  ];
-
-  final List<PreferredSizeWidget?> _navBarOptions = [
-    const AppBarScrapCycle(titleStr: 'Home'),
-    const AppBarScrapCycle(titleStr: 'Price list'),
-    const ProfileBar(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    context.read<ChangePage>().checkComplete();
+
+    final List<Widget> bodyOptions = [
+      context.watch<ChangePage>().isCompleted == true
+          ? const BodyPage()
+          : const PendingPage(),
+      PriceList(),
+      const Profile(),
+    ];
+
+    final List<PreferredSizeWidget?> navBarOptions = [
+      const HomeBar(),
+      const AppBarScrapCycle(titleStr: 'Price list'),
+      const ProfileBar(),
+    ];
+    int pageIndex = context.watch<HomeState>().selectedIndex;
+
+    void onItemTapped(int index) {
+      context.read<HomeState>().changeIndex(index);
+    }
+
     return Scaffold(
-      appBar: _navBarOptions.elementAt(_selectedIndex),
+      appBar: navBarOptions.elementAt(pageIndex),
       body: Center(
-        child: _bodyOptions.elementAt(_selectedIndex),
+        child: bodyOptions.elementAt(pageIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color(0xff27AE60),
-        items: const <BottomNavigationBarItem>[
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -91,9 +88,9 @@ class _HomeState extends State<Home> {
             label: 'Profile',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: pageIndex,
         selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
+        onTap: (int index) => onItemTapped(index),
       ),
     );
   }
