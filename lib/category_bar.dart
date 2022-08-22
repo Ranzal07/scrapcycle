@@ -15,16 +15,16 @@ class _CategoryBarState extends State<CategoryBar> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: const [
         CategoryBtn(
-            categoryName: 'Plastic',
-            typeId: 1,
-            imageBtn:
-                'https://images.pexels.com/photos/2547565/pexels-photo-2547565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-        CategoryBtn(
           categoryName: 'Glass',
-          typeId: 2,
+          typeId: 1,
           imageBtn:
               'https://images.pexels.com/photos/4042772/pexels-photo-4042772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         ),
+        CategoryBtn(
+            categoryName: 'Plastic',
+            typeId: 2,
+            imageBtn:
+                'https://images.pexels.com/photos/2547565/pexels-photo-2547565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
         CategoryBtn(
           categoryName: 'Metal',
           typeId: 3,

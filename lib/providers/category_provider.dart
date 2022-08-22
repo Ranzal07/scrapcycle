@@ -3,40 +3,6 @@ import 'package:flutter/material.dart';
 class CategoryState with ChangeNotifier {
   int _currentType = 1;
   List<String> _itemNames = [
-    "low density plastic",
-    "high density plastic",
-    "plastic bottle 1 litre",
-  ];
-  List<String> _values = [
-    "1.25 / kg",
-    "1.50 / kg",
-    "0.40 / kg",
-  ];
-  List<String> _examples = [
-    "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "monobloc chairs, hangers, shampoo bottles, water jugs, etc.",
-    "1.5 litres beverage plastic bottles",
-  ];
-
-// plastics
-  List<String> itemNames1 = [
-    "low density plastic",
-    "high density plastic",
-    "plastic bottle 1 litre",
-  ];
-  List<String> examples1 = [
-    "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
-    "monobloc chairs, hangers, shampoo bottles, water jugs, etc.",
-    "1.5 litres beverage plastic bottles",
-  ];
-  List<String> values1 = [
-    "1.25 / kg",
-    "1.50 / kg",
-    "0.40 / kg",
-  ];
-
-// glass
-  List<String> itemNames2 = [
     "Kulafu",
     "Tanduay",
     "Garapa",
@@ -54,7 +20,25 @@ class CategoryState with ChangeNotifier {
     "RedHorse small",
   ];
 
-  List<String> examples2 = [
+  List<String> _values = [
+    "0.40 / piece",
+    "0.50 / piece",
+    "0.60 / piece",
+    "0.10 / piece",
+    "0.10 / piece",
+    "0.80 / piece",
+    "0.80 / piece",
+    "0.40 / piece",
+    "28.00 / set",
+    "28.00 / set",
+    "28.00 / set",
+    "0.10 / piece",
+    "0.10 / piece",
+    "0.10 / piece",
+    "0.25 / piece",
+  ];
+
+  List<String> _examples = [
     "Liquor bottle",
     "Liquor bottle",
     "Efficascent oil bottle, etc.",
@@ -72,7 +56,61 @@ class CategoryState with ChangeNotifier {
     "Liquor bottle",
   ];
 
+// plastics
+  List<String> itemNames2 = [
+    "low density plastic",
+    "high density plastic",
+    "plastic bottle 1 litre",
+  ];
+  List<String> examples2 = [
+    "plastic cups, water bottles, coke mismo, sprite mismo, 250ml royal bottle, etc.",
+    "monobloc chairs, hangers, shampoo bottles, water jugs, etc.",
+    "1.5 litres beverage plastic bottles",
+  ];
   List<String> values2 = [
+    "1.25 / kg",
+    "1.50 / kg",
+    "0.40 / kg",
+  ];
+
+// glass
+  List<String> itemNames1 = [
+    "Kulafu",
+    "Tanduay",
+    "Garapa",
+    "Ketchup",
+    "Mallorca",
+    "Coke Litro",
+    "Kasalo/Pepsi",
+    "RedHorse Litro",
+    "Coke Litro w/ case",
+    "Pepsi Litro w/ case",
+    "RedHorse Litro w/ case",
+    "Coke small",
+    "Pepsi small",
+    "Cobra",
+    "RedHorse small",
+  ];
+
+  List<String> examples1 = [
+    "Liquor bottle",
+    "Liquor bottle",
+    "Efficascent oil bottle, etc.",
+    "UFC ketchup glass bottle",
+    "Liquor bottle",
+    "Liquor bottle",
+    "Liquor bottle",
+    "Liquor bottle",
+    "Liquor bottle w/ plastic case",
+    "Liquor bottle w/ plastic case",
+    "Liquor bottle w/ plastic case",
+    "Liquor bottle",
+    "Liquor bottle",
+    "Liquor bottle",
+    "Liquor bottle",
+  ];
+
+  List<String> values1 = [
     "0.40 / piece",
     "0.50 / piece",
     "0.60 / piece",
