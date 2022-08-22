@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pricelist/main.dart';
+import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import '../providers/change_provider.dart';
 
@@ -52,11 +53,14 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
                   value.user!.uid, widget.name, "+63${widget.phone}");
             }
 
+            context.read<UserState>().setUserID = value.user!.uid;
+
             //TODO
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (c) => Home(
-                      ID: value.user!.uid,
-                    )));
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (c) => const LandingPage(),
+              ),
+            );
           }
         });
       },
@@ -136,10 +140,14 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
                                         widget.name, "+63${widget.phone}"),
                                   },
 
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (c) => Home(
-                                          ID: value.user!.uid,
-                                        )))
+                                context.read<UserState>().setUserID =
+                                    value.user!.uid,
+
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (c) => const LandingPage(),
+                                  ),
+                                ),
                                 //password and name needs to be passed on database
                               },
                           });
@@ -171,6 +179,7 @@ class User {
         'Fullname': name,
         'Phone': phone,
         'completed?': true,
+        'addressID': '',
       });
     } catch (e) {
       print(e);

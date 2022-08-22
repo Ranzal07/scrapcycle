@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Address with ChangeNotifier {
-  final docAddress =
-      FirebaseFirestore.instance.collection('address').doc('my-userID');
+  String userId = '';
+
+  set setUserID(String uID) {
+    userId = uID;
+  }
+
+  final docAddress = FirebaseFirestore.instance.collection('address');
 
   String _roomNumber = '';
   String _street = '';
@@ -20,7 +25,7 @@ class Address with ChangeNotifier {
   String get moreDesccription => _moreDescription;
 
   void readAddress() async {
-    final snapshot = await docAddress.get();
+    final snapshot = await docAddress.doc(userId).get();
     if (snapshot.exists) {
       _roomNumber = snapshot.data()!['roomNumber'] ?? '';
       _street = snapshot.data()!['street'] ?? '';
@@ -39,7 +44,7 @@ class Address with ChangeNotifier {
       String formCity,
       String formProvince,
       String formDescription) {
-    docAddress.update({
+    docAddress.doc(userId).set({
       'roomNumber': formRoomNumber,
       'street': formStreet,
       'barangay': formBarangay,

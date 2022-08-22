@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pricelist/homepage_classes/add_to_database.dart';
+import 'package:pricelist/providers/address_provider.dart';
+import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
 
@@ -136,6 +138,38 @@ class _BodyPageState extends State<BodyPage> {
     return weekday;
   }
 
+  // DateTime datetime
+  DateTime datetime = DateTime.now();
+
+  void dataSend() async {
+    var users = FirebaseFirestore.instance.collection('users');
+    var schedule = FirebaseFirestore.instance.collection('schedule');
+    var address = FirebaseFirestore.instance.collection('address');
+    String userID = context.read<UserState>().getUserID;
+
+    // DocumentID: 'Admin'     Document Field: schedule-date: <timestamp> value
+    int day = datetime.day;
+    int month = datetime.month;
+    int year = datetime.year;
+
+    String dateID = '$day-$month-$year';
+
+    // get user address
+    print(address.doc(userID).get());
+
+    // TODO:add to schedule
+    context.read<Address>().readAddress();
+
+    // schedule.doc(dateID).collection(userID).
+
+    // TODO:change user collection pending status
+    // users
+    //     .doc(context.read<UserState>().getUserID)
+    //     .update({'completed?': false});
+
+    // Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -164,7 +198,7 @@ class _BodyPageState extends State<BodyPage> {
                             snapshot.data!.data() as Map<String, dynamic>;
                         DateTime scheduleDate =
                             dateSnapshot['schedule-date'].toDate();
-                        date = scheduleDate;
+                        datetime = scheduleDate;
                         return Container(
                           alignment: Alignment.topCenter,
                           child: Text(
@@ -208,8 +242,7 @@ class _BodyPageState extends State<BodyPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    AddToDatabase.dataSend(
-                                        context, date, widget.id);
+                                    dataSend();
                                   },
                                   child: const Text('Confirm',
                                       style: TextStyle(color: Colors.green)),

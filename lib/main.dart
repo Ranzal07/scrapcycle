@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,22 +9,40 @@ import 'package:pricelist/pages/body.dart';
 import 'package:pricelist/pages/pending.dart';
 import 'package:pricelist/pages/pricelist.dart';
 import 'package:pricelist/pages/profile.dart';
-import 'package:pricelist/pages/schedule.dart';
 import 'package:pricelist/providers/change_notifier.dart';
 import 'package:pricelist/providers/change_provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
 import 'package:pricelist/pages/sign_in_page.dart';
+import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 import 'package:pricelist/providers/address_provider.dart';
 
+class StartupLogic {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Widget getLandingPage(BuildContext ctx) {
+    return StreamBuilder<User?>(
+        stream: _auth.authStateChanges(),
+        builder: (BuildContext ctx, snapshot) {
+          if (snapshot.hasData) {
+            return Home(userID: snapshot.data!.uid);
+          }
+
+          return SignInPage();
+        });
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Change()),
+        ChangeNotifierProvider(create: (_) => UserState()),
         ChangeNotifierProvider(create: (_) => CategoryState()),
         ChangeNotifierProvider(create: (_) => Address()),
         ChangeNotifierProvider(create: (_) => HomeState()),
@@ -34,16 +53,24 @@ void main() async {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: SignInPage(),
+        home: const LandingPage(),
       ),
     ),
   );
 }
 
-class Home extends StatefulWidget {
-  const Home({Key? key, required this.ID}) : super(key: key);
-  final String ID;
+class LandingPage extends StatelessWidget {
+  const LandingPage({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return StartupLogic().getLandingPage(context);
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({Key? key, required this.userID}) : super(key: key);
+  final String userID;
   @override
   State<Home> createState() => _HomeState();
 }
@@ -52,19 +79,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // print(widget.ID);
+    context.read<UserState>().setUserID = widget.userID;
+    context.read<Address>().setUserID = widget.userID;
+    context.read<Address>().readAddress();
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    context.read<ChangePage>().checkComplete(widget.ID);
+    context.read<ChangePage>().checkComplete(widget.userID);
 
     final List<Widget> bodyOptions = [
       context.watch<ChangePage>().isCompleted == true
-          ? BodyPage(id: widget.ID)
+          ? BodyPage(id: widget.userID)
           : const PendingPage(),
       PriceList(
-        ID: widget.ID,
+        ID: widget.userID,
       ),
       const Profile(),
     ];
