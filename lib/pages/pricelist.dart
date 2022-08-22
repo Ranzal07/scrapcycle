@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 
 class PriceList extends StatefulWidget {
-  PriceList({Key? key}) : super(key: key);
+  PriceList({Key? key,required this.ID}) : super(key: key);
+  final String ID;
 
   @override
   State<PriceList> createState() => _PriceListState();
@@ -42,7 +43,8 @@ class _PriceListState extends State<PriceList> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children:  const [
+              
               Icon(
                 Icons.payments,
                 size: 28,

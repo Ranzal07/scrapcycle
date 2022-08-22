@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pricelist/appBars/appbar.dart';
 import 'package:pricelist/appBars/homebar.dart';
 import 'package:pricelist/appBars/profilebar.dart';
@@ -9,7 +10,9 @@ import 'package:pricelist/pages/pricelist.dart';
 import 'package:pricelist/pages/profile.dart';
 import 'package:pricelist/pages/schedule.dart';
 import 'package:pricelist/providers/change_notifier.dart';
+import 'package:pricelist/providers/change_provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
+import 'package:pricelist/sign_in_page.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 import 'package:pricelist/providers/address_provider.dart';
@@ -20,6 +23,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => Change()),
         ChangeNotifierProvider(create: (_) => CategoryState()),
         ChangeNotifierProvider(create: (_) => Address()),
         ChangeNotifierProvider(create: (_) => HomeState()),
@@ -30,14 +34,15 @@ void main() async {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: const Home(),
+        home: SignInPage(),
       ),
     ),
   );
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key, required this.ID}) : super(key: key);
+  final String ID;
 
   @override
   State<Home> createState() => _HomeState();
@@ -46,13 +51,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    // print(widget.ID);
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+
     context.read<ChangePage>().checkComplete();
 
     final List<Widget> bodyOptions = [
       context.watch<ChangePage>().isCompleted == true
-          ? const BodyPage()
+          ?  BodyPage(id: widget.ID)
           : const PendingPage(),
-      PriceList(),
+      PriceList(ID: widget.ID,),
       const Profile(),
     ];
 
