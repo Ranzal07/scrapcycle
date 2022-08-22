@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, avoid_print, import_of_legacy_library_into_null_safe
 
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -9,21 +8,19 @@ import 'package:pricelist/main.dart';
 import 'package:provider/provider.dart';
 import '../providers/change_provider.dart';
 
-
 class OtpControllerScreen extends StatefulWidget {
-  
   final String phone;
   final String name;
   final int stateChange;
 
-  const OtpControllerScreen({required this.phone, required this.name,required this.stateChange});
+  const OtpControllerScreen(
+      {required this.phone, required this.name, required this.stateChange});
 
   @override
   State<OtpControllerScreen> createState() => _OtpControllerScreenState();
 }
 
 class _OtpControllerScreenState extends State<OtpControllerScreen> {
-  
   final GlobalKey<ScaffoldState> _scaffolkey = GlobalKey<ScaffoldState>();
   final TextEditingController _pinOTPCodeController = TextEditingController();
   final FocusNode _pinOTPCodeFocus = FocusNode();
@@ -32,63 +29,59 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
   final BoxDecoration pinOTPCodeDecoration = BoxDecoration(
     color: Colors.greenAccent,
     borderRadius: BorderRadius.circular(10.0),
-    
   );
 
   @override
   //TODO AUTO SENT CODE WHEN VISITED THE PAGE
-  void initState(){
+  void initState() {
     super.initState();
     verifyPhoneNumber();
   }
-  
+
   //TODO FIREBASE FUNCTION FOR SMS
-  verifyPhoneNumber() async{
+  verifyPhoneNumber() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: "+63 ${widget.phone}",
-      verificationCompleted: (PhoneAuthCredential credential) async { 
-        await FirebaseAuth.instance.signInWithCredential(credential).then((value){
-          if(value.user != null) {
-
-             if(widget.stateChange == 0){
-             User().createUser(value.user!.uid, widget.name, "+63${widget.phone}");
-             }
-             
-             //TODO
-             Navigator.of(context).push(MaterialPageRoute(builder: (c)=> Home(
-             ID: value.user!.uid,
-             )));
-            
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await FirebaseAuth.instance
+            .signInWithCredential(credential)
+            .then((value) {
+          if (value.user != null) {
+            if (widget.stateChange == 0) {
+              User().createUser(
+                  value.user!.uid, widget.name, "+63${widget.phone}");
             }
+
+            //TODO
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (c) => Home(
+                      ID: value.user!.uid,
+                    )));
+          }
         });
       },
-
-      verificationFailed: (FirebaseAuthException e ) {
+      verificationFailed: (FirebaseAuthException e) {
         ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-              content: Text(e.message.toString()),
-              duration: const Duration(seconds: 3),
-            ),
-          );
+          SnackBar(
+            content: Text(e.message.toString()),
+            duration: const Duration(seconds: 3),
+          ),
+        );
       },
-
       codeSent: (String vID, int? resentToken) {
         setState(() {
           verificationCode = vID;
         });
       },
-
-      codeAutoRetrievalTimeout: (verificationID) async{
+      codeAutoRetrievalTimeout: (verificationID) async {
         setState(() {
           verificationCode = verificationID;
         });
       },
-
-      timeout: const Duration(seconds:60),
-
+      timeout: const Duration(seconds: 60),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,21 +94,22 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
             margin: const EdgeInsets.only(top: 20),
             child: Center(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   verifyPhoneNumber();
                 },
                 child: Text(
                   "Veryfying: +63 ${widget.phone}",
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
             ),
           ),
-          
+
           //TODO PIN DESIGN AND MANUAL INPUT
           Padding(
             padding: const EdgeInsets.all(40.0),
-            child : PinPut(
+            child: PinPut(
               fieldsCount: 6,
               textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
               eachFieldWidth: 40.0,
@@ -128,30 +122,30 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
 
               //pinAnimationType: PinAnimationType.rotation,
               onSubmit: (pin) async {
-                try{
+                try {
                   //TODO MANUAL INPUT SIGN UP OR LOGIN
-                  await FirebaseAuth.instance.signInWithCredential(
-                    PhoneAuthProvider.credential(
-                      verificationId: verificationCode!, smsCode: pin
-                      )).then((value) => {
-                        
-                        
-                        if(value.user != null){
-                           if(widget.stateChange ==0){
-                            User().createUser(value.user!.uid, widget.name, "+63${widget.phone}"),
-                            
-                           },
-                           
-                          Navigator.of(context).push(MaterialPageRoute(builder: (c)=> Home(
-                           ID: value.user!.uid,
-                           )))
-                           //password and name needs to be passed on database
-                        },
+                  await FirebaseAuth.instance
+                      .signInWithCredential(PhoneAuthProvider.credential(
+                          verificationId: verificationCode!, smsCode: pin))
+                      .then((value) => {
+                            if (value.user != null)
+                              {
+                                if (widget.stateChange == 0)
+                                  {
+                                    User().createUser(value.user!.uid,
+                                        widget.name, "+63${widget.phone}"),
+                                  },
 
-                      });
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (c) => Home(
+                                          ID: value.user!.uid,
+                                        )))
+                                //password and name needs to be passed on database
+                              },
+                          });
                 }
                 //TODO MANUAL INPUT INVALID OTP
-                catch(e){
+                catch (e) {
                   FocusScope.of(context).unfocus();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -161,8 +155,6 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
                   );
                 }
               },
-
-
             ),
           )
         ],
@@ -174,14 +166,15 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
 //TODO CREATE USER IF SIGN UP
 class User {
   Future<String> createUser(String uid, String name, String phone) async {
-      try{
-          await FirebaseFirestore.instance.collection('users').doc(uid).set({
-              'Fullname' : name,
-              'Phone' : phone
-             });
-      }catch(e){
-        print(e);
-      }
-      return 'success';
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'Fullname': name,
+        'Phone': phone,
+        'completed?': true,
+      });
+    } catch (e) {
+      print(e);
+    }
+    return 'success';
   }
 }

@@ -12,7 +12,7 @@ import 'package:pricelist/pages/schedule.dart';
 import 'package:pricelist/providers/change_notifier.dart';
 import 'package:pricelist/providers/change_provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
-import 'package:pricelist/sign_in_page.dart';
+import 'package:pricelist/pages/sign_in_page.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 import 'package:pricelist/providers/address_provider.dart';
@@ -53,17 +53,19 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // print(widget.ID);
     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
-    context.read<ChangePage>().checkComplete();
+    context.read<ChangePage>().checkComplete(widget.ID);
 
     final List<Widget> bodyOptions = [
       context.watch<ChangePage>().isCompleted == true
-          ?  BodyPage(id: widget.ID)
+          ? BodyPage(id: widget.ID)
           : const PendingPage(),
-      PriceList(ID: widget.ID,),
+      PriceList(
+        ID: widget.ID,
+      ),
       const Profile(),
     ];
 
@@ -72,6 +74,7 @@ class _HomeState extends State<Home> {
       const AppBarScrapCycle(titleStr: 'Price list'),
       const ProfileBar(),
     ];
+
     int pageIndex = context.watch<HomeState>().selectedIndex;
 
     void onItemTapped(int index) {

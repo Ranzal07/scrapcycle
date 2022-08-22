@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
 
 class BodyPage extends StatefulWidget {
-  const BodyPage({Key? key,required this.id}) : super(key: key);
+  const BodyPage({Key? key, required this.id}) : super(key: key);
   final String id;
   @override
   State<BodyPage> createState() => _BodyPageState();
@@ -208,7 +208,8 @@ class _BodyPageState extends State<BodyPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    AddToDatabase.dataSend(context, date,widget.id);
+                                    AddToDatabase.dataSend(
+                                        context, date, widget.id);
                                   },
                                   child: const Text('Confirm',
                                       style: TextStyle(color: Colors.green)),
