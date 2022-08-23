@@ -68,9 +68,9 @@ class CategoryState with ChangeNotifier {
     "1.5 litres beverage plastic bottles",
   ];
   List<String> values2 = [
-    "1.25 / kg",
     "1.50 / kg",
-    "0.40 / kg",
+    "2.00 / kg",
+    "0.50 / kg",
   ];
 
 // glass
@@ -111,21 +111,21 @@ class CategoryState with ChangeNotifier {
   ];
 
   List<String> values1 = [
-    "0.40 / piece",
     "0.50 / piece",
+    "0.75 / piece",
     "0.60 / piece",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.80 / piece",
-    "0.80 / piece",
-    "0.40 / piece",
-    "28.00 / set",
-    "28.00 / set",
-    "28.00 / set",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.25 / piece",
+    "0.15 / piece",
+    "0.15 / piece",
+    "1.00 / piece",
+    "1.00 / piece",
+    "0.50 / piece",
+    "35.00 / set",
+    "35.00 / set",
+    "35.00 / set",
+    "0.15 / piece",
+    "0.15 / piece",
+    "0.15 / piece",
+    "0.35 / piece",
   ];
 
 // metal
@@ -160,19 +160,19 @@ class CategoryState with ChangeNotifier {
     "locks, hinges, zippers, drawer knobs, etc.",
   ];
   List<String> values3 = [
-    "5.20 / kg",
-    "6.40 / kg",
-    "3.20 / kg",
-    "2.80 / kg",
-    "1.50 / kg",
+    "7.50 / kg",
+    "8.00 / kg",
+    "4.00 / kg",
+    "3.50 / kg",
     "2.00 / kg",
-    "18.00 / kg",
-    "12.00 / kg",
-    "12.00 / kg",
-    "12.00 / kg",
-    "16.00 / kg",
-    "136.00 / kg",
-    "80.00 / kg",
+    "2.50 / kg",
+    "22.5 / kg",
+    "15.00 / kg",
+    "15.00 / kg",
+    "15.00 / kg",
+    "20.00 / kg",
+    "170.00 / kg",
+    "100.00 / kg",
   ];
 
 // battery
@@ -197,14 +197,14 @@ class CategoryState with ChangeNotifier {
     "car battery",
   ];
   List<String> values4 = [
-    "10.00 / piece",
-    "60.00 / piece",
-    "120.00 / piece",
-    "160.00 / piece",
+    "12.50 / piece",
+    "75.00 / piece",
+    "150.00 / piece",
     "200.00 / piece",
-    "240.00 / piece",
-    "360.00 / piece",
-    "400.00 / piece",
+    "250.00 / piece",
+    "300.00 / piece",
+    "450.00 / piece",
+    "500.00 / piece",
   ];
 
 // electronics
@@ -223,11 +223,11 @@ class CategoryState with ChangeNotifier {
     "radiator",
   ];
   List<String> values5 = [
-    "9.20 / piece",
-    "16.00 / piece",
-    "40.00 / piece",
-    "80.00 / piece",
-    "48.00 / piece",
+    "11.50 / piece",
+    "20.00 / piece",
+    "50.00 / piece",
+    "100.00 / piece",
+    "60.00 / piece",
   ];
 
   int get currentType => _currentType;
