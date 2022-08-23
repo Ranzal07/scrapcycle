@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pricelist/pages/set_address.dart';
+import 'package:pricelist/providers/address_provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,9 @@ class HomeBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     Color myColor = const Color.fromARGB(255, 39, 174, 95);
+
+    String address =
+        '${context.watch<Address>().roomNumber} ${context.watch<Address>().street} ${context.watch<Address>().barangay} ${context.watch<Address>().city}';
 
     return AppBar(
       toolbarHeight: 120,
@@ -57,11 +61,16 @@ class HomeBar extends StatelessWidget with PreferredSizeWidget {
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text("Blk 1 Lot 24 IRA Subd. Brgy. Baan Km. 3",
-                      style: TextStyle(fontSize: 15)),
-                  SizedBox(width: 7),
-                  Icon(Icons.my_location, size: 18),
+                children: [
+                  Text(
+                    address,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 7),
+                  const Icon(Icons.my_location, size: 18),
                 ],
               ),
             ),

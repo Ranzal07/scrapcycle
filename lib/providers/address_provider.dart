@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,31 +10,32 @@ class Address with ChangeNotifier {
     userId = uID;
   }
 
-  final docAddress = FirebaseFirestore.instance.collection('address');
+  final users = FirebaseFirestore.instance.collection('users');
 
-  String _roomNumber = '';
-  String _street = '';
-  String _barangay = '';
-  String _city = '';
-  String _province = '';
-  String _moreDescription = '';
+  String _roomNumber = 'add address';
+  String _street = 'add address';
+  String _barangay = 'add address';
+  String _city = 'add address';
+  String _province = 'add address';
+  String _moreDescription = 'add address';
 
   String get roomNumber => _roomNumber;
   String get street => _street;
   String get barangay => _barangay;
   String get city => _city;
   String get province => _province;
-  String get moreDesccription => _moreDescription;
+  String get moreDescription => _moreDescription;
 
   void readAddress() async {
-    final snapshot = await docAddress.doc(userId).get();
+    final snapshot = await users.doc(userId).get();
     if (snapshot.exists) {
-      _roomNumber = snapshot.data()!['roomNumber'] ?? '';
-      _street = snapshot.data()!['street'] ?? '';
-      _barangay = snapshot.data()!['barangay'] ?? '';
-      _city = snapshot.data()!['city'] ?? '';
-      _province = snapshot.data()!['province'] ?? '';
-      _moreDescription = snapshot.data()!['moreDescription'] ?? '';
+      final jsonAddress = snapshot.data()!['address'];
+
+      _roomNumber = jsonAddress['roomNumber'] ?? '';
+      _street = jsonAddress['street'] ?? '';
+      _barangay = jsonAddress['barangay'] ?? '';
+      _province = jsonAddress['province'] ?? '';
+      _moreDescription = jsonAddress['moreDescription'] ?? '';
     }
     notifyListeners();
   }
@@ -44,14 +47,16 @@ class Address with ChangeNotifier {
       String formCity,
       String formProvince,
       String formDescription) {
-    docAddress.doc(userId).set({
-      'roomNumber': formRoomNumber,
-      'street': formStreet,
-      'barangay': formBarangay,
-      'city': formCity,
-      'province': formProvince,
-      'moreDescription': formDescription,
-    }).then((value) {
+    users.doc(userId).set({
+      'address': {
+        'roomNumber': formRoomNumber,
+        'street': formStreet,
+        'barangay': formBarangay,
+        'city': formCity,
+        'province': formProvince,
+        'moreDescription': formDescription,
+      }
+    }, SetOptions(merge: true)).then((value) {
       // print('User Address Updated');
       _roomNumber = formRoomNumber;
       _street = formStreet;

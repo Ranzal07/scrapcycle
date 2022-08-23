@@ -8,7 +8,7 @@ class ChangePage with ChangeNotifier {
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.collection('users').doc(id).get();
     //  change the DocumentID [doc('')] according to the username
-    isCompleted = documentSnapshot['completed?'];
+    isCompleted = documentSnapshot['completed?'] ?? true;
     notifyListeners();
   }
 }

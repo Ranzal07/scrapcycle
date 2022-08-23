@@ -144,7 +144,7 @@ class _BodyPageState extends State<BodyPage> {
   void dataSend() async {
     var users = FirebaseFirestore.instance.collection('users');
     var schedule = FirebaseFirestore.instance.collection('schedule');
-    var address = FirebaseFirestore.instance.collection('address');
+    // var address = FirebaseFirestore.instance.collection('address');
     String userID = context.read<UserState>().getUserID;
 
     // DocumentID: 'Admin'     Document Field: schedule-date: <timestamp> value
@@ -153,21 +153,39 @@ class _BodyPageState extends State<BodyPage> {
     int year = datetime.year;
 
     String dateID = '$day-$month-$year';
+    int numOfDocs = 1;
 
     // get user address
-    print(address.doc(userID).get());
+    // print(address.doc(userID).get());
+    schedule.get().then((querySnapshot) {
+      // print('number of docs');
+      numOfDocs = querySnapshot.size + 1;
+    });
 
     // TODO:add to schedule
-    context.read<Address>().readAddress();
+    // context.read<Address>().readAddress();
 
-    // schedule.doc(dateID).collection(userID).
+    schedule
+        .doc(dateID)
+        .collection('user-$numOfDocs')
+        .doc(userID)
+        .set({'id': userID});
+
+    // schedule.doc(dateID).collection(userID).doc('address').set({
+    //   'roomNumber': context.read<Address>().roomNumber,
+    //   'street': context.read<Address>().street,
+    //   'barangay': context.read<Address>().barangay,
+    //   'city': context.read<Address>().city,
+    //   'province': context.read<Address>().province,
+    //   'moreDescription': context.read<Address>().moreDescription,
+    // });
 
     // TODO:change user collection pending status
-    // users
-    //     .doc(context.read<UserState>().getUserID)
-    //     .update({'completed?': false});
+    users
+        .doc(context.read<UserState>().getUserID)
+        .update({'completed?': false});
 
-    // Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   @override

@@ -179,7 +179,6 @@ class User {
         'Fullname': name,
         'Phone': phone,
         'completed?': true,
-        'addressID': '',
       });
     } catch (e) {
       print(e);

@@ -18,6 +18,7 @@ class _SetAddressState extends State<SetAddress> {
     // context.read<Address>().setUserID = context.read<UserState>().getUserID;
 
     context.read<Address>().readAddress();
+
     TextEditingController roomNumberController =
         TextEditingController(text: context.read<Address>().roomNumber);
     TextEditingController streetController =
@@ -29,7 +30,7 @@ class _SetAddressState extends State<SetAddress> {
     TextEditingController provinceController =
         TextEditingController(text: context.read<Address>().province);
     TextEditingController moreDescriptionController =
-        TextEditingController(text: context.read<Address>().moreDesccription);
+        TextEditingController(text: context.read<Address>().moreDescription);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65.0,
