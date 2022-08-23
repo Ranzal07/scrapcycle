@@ -29,7 +29,7 @@ class _SignInPageState extends State<SignInPage> {
   Future userExist(String number) async {
     FirebaseFirestore.instance
         .collection("users")
-        .where('Phone', isEqualTo: number)
+        .where('phone', isEqualTo: number)
         .get()
         .then((result) {
       if (result.docs.isNotEmpty) {

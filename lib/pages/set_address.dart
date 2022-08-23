@@ -17,18 +17,16 @@ class _SetAddressState extends State<SetAddress> {
   Widget build(BuildContext context) {
     // context.read<Address>().setUserID = context.read<UserState>().getUserID;
 
-    context.read<Address>().readAddress();
+    context.read<Address>().readAddress(context.read<UserState>().getUserID);
 
     TextEditingController roomNumberController =
         TextEditingController(text: context.read<Address>().roomNumber);
     TextEditingController streetController =
         TextEditingController(text: context.read<Address>().street);
     TextEditingController barangayController =
-        TextEditingController(text: context.read<Address>().barangay);
+        TextEditingController(text: "Ampayon");
     TextEditingController cityController =
-        TextEditingController(text: context.read<Address>().city);
-    TextEditingController provinceController =
-        TextEditingController(text: context.read<Address>().province);
+        TextEditingController(text: "Butuan City");
     TextEditingController moreDescriptionController =
         TextEditingController(text: context.read<Address>().moreDescription);
     return Scaffold(
@@ -115,11 +113,12 @@ class _SetAddressState extends State<SetAddress> {
                               const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                           child: TextFormField(
                             controller: barangayController,
+                            readOnly: true,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
-                              labelText: 'Barangay',
+                              labelText: 'Barangay (default)',
                               hintStyle: const TextStyle(fontSize: 14),
                             ),
                             validator: (value) {
@@ -135,12 +134,13 @@ class _SetAddressState extends State<SetAddress> {
                           margin:
                               const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                           child: TextFormField(
+                            readOnly: true,
                             controller: cityController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
-                              labelText: 'City',
+                              labelText: 'City (default)',
                               hintStyle: const TextStyle(fontSize: 14),
                             ),
                             validator: (value) {
@@ -151,27 +151,7 @@ class _SetAddressState extends State<SetAddress> {
                             },
                           ),
                         ),
-                        //Container for province
-                        Container(
-                          margin:
-                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                          child: TextFormField(
-                            controller: provinceController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              labelText: 'Province',
-                              hintStyle: const TextStyle(fontSize: 14),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
+
                         //Container for more description
                         Container(
                           margin:
@@ -222,8 +202,8 @@ class _SetAddressState extends State<SetAddress> {
                 streetController.text,
                 barangayController.text,
                 cityController.text,
-                provinceController.text,
-                moreDescriptionController.text);
+                moreDescriptionController.text,
+                context.read<UserState>().getUserID);
             //Need to change route
             // Navigator.push(
             //   context,
@@ -232,8 +212,8 @@ class _SetAddressState extends State<SetAddress> {
             // );
           }
         },
-        label: const Text('Edit Address'),
-        icon: const Icon(Icons.edit),
+        label: const Text('Save Changes'),
+        icon: const Icon(Icons.check),
         backgroundColor: const Color(0xff27ae60),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

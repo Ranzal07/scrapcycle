@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,14 +15,16 @@ class PendingPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Container(
-          height: 110,
-          width: 200,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage("assets/images/pending-truck.png"),
+        Padding(
+          padding: const EdgeInsets.only(top: 90.0),
+          child: Container(
+            height: 110,
+            width: 200,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage("assets/images/pending-truck.png"),
+              ),
             ),
           ),
         ),
@@ -74,6 +77,31 @@ class PendingPage extends StatelessWidget {
             ),
           ),
         ),
+        // ElevatedButton(
+        //   onPressed: () {},
+        //   style: ElevatedButton.styleFrom(
+        //     primary: const Color(0xFF27AE60),
+        //     onSurface: Colors.black,
+        //     shape: const RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.all(
+        //         Radius.circular(15),
+        //       ),
+        //     ),
+        //     padding: const EdgeInsets.symmetric(
+        //       vertical: 15.0,
+        //       horizontal: 50.0,
+        //     ),
+        //   ),
+        //   child: Text(
+        //     'Cancel Schedule',
+        //     style: GoogleFonts.inter(
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.w600,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ),
+        const Spacer(),
         Container(
           height: 150.0,
           width: double.infinity,

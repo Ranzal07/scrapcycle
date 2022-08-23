@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pricelist/pages/set_address.dart';
+import 'package:provider/provider.dart';
+import 'package:pricelist/providers/user_provider.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -28,23 +30,23 @@ class Profile extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 8),
                         image: const DecorationImage(
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fitHeight,
                           image: NetworkImage(
-                              'https://raw.githubusercontent.com/BustamanteFlocer/Scrapcycle_UserProfile/master/assets/images/profile.jpg'),
+                              'https://clipart.world/wp-content/uploads/2020/09/Leaf-clipart-free-for-kid.png'),
                         ),
                       ),
                     ),
-                    const Text(
-                      "Scrapper Name",
-                      style: TextStyle(
+                    Text(
+                      context.watch<UserState>().getUserName,
+                      style: const TextStyle(
                         fontSize: 22,
                         color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
-                      "09482440776",
-                      style: TextStyle(
+                    Text(
+                      context.watch<UserState>().getPhoneNumber,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),

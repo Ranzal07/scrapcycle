@@ -26,8 +26,8 @@ class StartupLogic {
         stream: _auth.authStateChanges(),
         builder: (BuildContext ctx, snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data);
-            // ctx.read<UserState>().setUserName = snapshot.data!.displayName;
+            ctx.read<UserState>().getUserDetails(snapshot.data!.uid);
+            ctx.read<Address>().readAddress(snapshot.data!.uid);
             return Home(userID: snapshot.data!.uid);
           }
 
@@ -80,16 +80,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    // print(widget.ID);
-    context.read<UserState>().setUserID = widget.userID;
-    context.read<Address>().setUserID = widget.userID;
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    // context.read<ChangePage>().checkComplete(widget.userID);
+    // TODO: test this for the login and sign up
+    context.read<ChangePage>().checkComplete(widget.userID);
 
     final List<Widget> bodyOptions = [
       context.watch<ChangePage>().isCompleted == true

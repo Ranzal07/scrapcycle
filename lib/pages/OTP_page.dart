@@ -49,18 +49,16 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
             .then((value) {
           if (value.user != null) {
             if (widget.stateChange == 0) {
-              User().createUser(
+              context.read<UserState>().createUser(
                   value.user!.uid, widget.name, "+63${widget.phone}");
             }
 
-            context.read<UserState>().setUserID = value.user!.uid;
+            context.read<UserState>().getUserDetails(value.user!.uid);
 
             //TODO
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (c) => const LandingPage(),
-              ),
-            );
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const LandingPage()),
+                (Route<dynamic> route) => false);
           }
         });
       },
@@ -136,18 +134,27 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
                               {
                                 if (widget.stateChange == 0)
                                   {
-                                    User().createUser(value.user!.uid,
-                                        widget.name, "+63${widget.phone}"),
+                                    context.read<UserState>().createUser(
+                                        value.user!.uid,
+                                        widget.name,
+                                        "+63${widget.phone}"),
                                   },
 
-                                context.read<UserState>().setUserID =
-                                    value.user!.uid,
+                                // context
+                                //     .read<UserState>()
+                                //     .getUserDetails(value.user!.uid),
 
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (c) => const LandingPage(),
-                                  ),
-                                ),
+                                // Navigator.of(context).push(
+                                //   MaterialPageRoute(
+                                //     builder: (c) => const LandingPage(),
+                                //   ),
+                                // ),
+
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LandingPage()),
+                                    (Route<dynamic> route) => false),
                                 //password and name needs to be passed on database
                               },
                           });
@@ -172,17 +179,17 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
 }
 
 //TODO CREATE USER IF SIGN UP
-class User {
-  Future<String> createUser(String uid, String name, String phone) async {
-    try {
-      await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'Fullname': name,
-        'Phone': phone,
-        'completed?': true,
-      });
-    } catch (e) {
-      print(e);
-    }
-    return 'success';
-  }
-}
+// class User {
+//   Future<String> createUser(String uid, String name, String phone) async {
+//     try {
+//       await FirebaseFirestore.instance.collection('users').doc(uid).set({
+//         'Fullname': name,
+//         'Phone': phone,
+//         'completed?': true,
+//       });
+//     } catch (e) {
+//       print(e);
+//     }
+//     return 'success';
+//   }
+// }

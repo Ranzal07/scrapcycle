@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pricelist/homepage_classes/add_to_database.dart';
+import 'package:pricelist/pages/set_address.dart';
 import 'package:pricelist/providers/address_provider.dart';
 import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -171,15 +172,6 @@ class _BodyPageState extends State<BodyPage> {
         .doc(userID)
         .set({'id': userID});
 
-    // schedule.doc(dateID).collection(userID).doc('address').set({
-    //   'roomNumber': context.read<Address>().roomNumber,
-    //   'street': context.read<Address>().street,
-    //   'barangay': context.read<Address>().barangay,
-    //   'city': context.read<Address>().city,
-    //   'province': context.read<Address>().province,
-    //   'moreDescription': context.read<Address>().moreDescription,
-    // });
-
     // TODO:change user collection pending status
     users
         .doc(context.read<UserState>().getUserID)
@@ -239,16 +231,45 @@ class _BodyPageState extends State<BodyPage> {
                       showDialog(
                           context: context,
                           builder: (context) {
+                            if (context.read<Address>().roomNumber != '') {
+                              return AlertDialog(
+                                title: const Center(
+                                  child: Text(
+                                    'Confirm your collection?',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                content: const SingleChildScrollView(
+                                  child: Text(
+                                      'By confirming this, you agree that ScrapCycle will collect your scraps on the day shown in the screen'),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('Back',
+                                        style: TextStyle(color: Colors.red)),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      dataSend();
+                                    },
+                                    child: const Text('Confirm',
+                                        style: TextStyle(color: Colors.green)),
+                                  ),
+                                ],
+                                elevation: 25,
+                              );
+                            }
+
                             return AlertDialog(
                               title: const Center(
                                 child: Text(
-                                  'Confirm your collection?',
+                                  'Set your address to continue',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                              content: const SingleChildScrollView(
-                                child: Text(
-                                    'By confirming this, you agree that ScrapCycle will collect your scraps on the day shown in the screen'),
                               ),
                               actions: [
                                 TextButton(
@@ -260,9 +281,15 @@ class _BodyPageState extends State<BodyPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    dataSend();
+                                    Navigator.of(context).pop();
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SetAddress()),
+                                    );
                                   },
-                                  child: const Text('Confirm',
+                                  child: const Text('Ok',
                                       style: TextStyle(color: Colors.green)),
                                 ),
                               ],
@@ -508,3 +535,43 @@ class _BodyPageState extends State<BodyPage> {
     );
   }
 }
+
+
+// dialogs
+
+// class ConfirmationAlert extends StatelessWidget {
+//   const ConfirmationAlert({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return return AlertDialog(
+//                               title: const Center(
+//                                 child: Text(
+//                                   'Confirm your collection?',
+//                                   style: TextStyle(fontWeight: FontWeight.bold),
+//                                 ),
+//                               ),
+//                               content: const SingleChildScrollView(
+//                                 child: Text(
+//                                     'By confirming this, you agree that ScrapCycle will collect your scraps on the day shown in the screen'),
+//                               ),
+//                               actions: [
+//                                 TextButton(
+//                                   onPressed: () {
+//                                     Navigator.of(context).pop();
+//                                   },
+//                                   child: const Text('Back',
+//                                       style: TextStyle(color: Colors.red)),
+//                                 ),
+//                                 TextButton(
+//                                   onPressed: () {
+//                                     dataSend();
+//                                   },
+//                                   child: const Text('Confirm',
+//                                       style: TextStyle(color: Colors.green)),
+//                                 ),
+//                               ],
+//                               elevation: 25,
+//                             );
+//   }
+// }

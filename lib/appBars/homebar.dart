@@ -12,8 +12,9 @@ class HomeBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     Color myColor = const Color.fromARGB(255, 39, 174, 95);
 
-    String address =
-        '${context.watch<Address>().roomNumber} ${context.watch<Address>().street} ${context.watch<Address>().barangay} ${context.watch<Address>().city}';
+    String address = (context.watch<Address>().roomNumber == '')
+        ? 'Edit address to start '
+        : '${context.watch<Address>().roomNumber} ${context.watch<Address>().street} ${context.watch<Address>().barangay} ${context.watch<Address>().city}';
 
     return AppBar(
       toolbarHeight: 120,
@@ -48,30 +49,36 @@ class HomeBar extends StatelessWidget with PreferredSizeWidget {
                 MaterialPageRoute(builder: (context) => const SetAddress()),
               );
             },
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-              padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                border: Border.all(
-                  color: const Color.fromARGB(125, 33, 150, 84),
-                  width: 2.5,
-                ),
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    address,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+            child: FractionallySizedBox(
+              widthFactor: 0.9,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                margin: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.0),
+                  border: Border.all(
+                    color: const Color.fromARGB(125, 33, 150, 84),
+                    width: 2.5,
                   ),
-                  const SizedBox(width: 7),
-                  const Icon(Icons.my_location, size: 18),
-                ],
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          address,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      const Icon(Icons.my_location, size: 18),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
