@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Change with ChangeNotifier{
   List<String> strArr = ['Sign Up','Sign In'];
   List<String> strArr1 = ['Register','Login',];
-  List<String> strArr2 = ['Already Have an Account?','Don\'t have an account?',];
+  List<String> strArr2 = ['Already Have an Account? ','Don\'t have an account? ',];
   List<String> strArr3 = ['Login','Register',];
   int _count = 0;
   bool _visible = false;

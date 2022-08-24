@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'models/price.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+// ignore: non_constant_identifier_names
 final CollectionReference _Collection = _firestore.collection('pricelist');
 
 class FirebaseCrud {

@@ -27,13 +27,17 @@ class Profile extends StatelessWidget {
                       height: 130,
                       width: 140,
                       decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 207, 255, 195),
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 8),
                         image: const DecorationImage(
-                          fit: BoxFit.fitHeight,
+                          //fit: BoxFit.fill,
+                          scale: 10.9,
+                          alignment: Alignment.bottomCenter,
                           image: NetworkImage(
-                              'https://clipart.world/wp-content/uploads/2020/09/Leaf-clipart-free-for-kid.png'),
+                              'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Avatar_icon_green.svg/1200px-Avatar_icon_green.svg.png'),
                         ),
+              
                       ),
                     ),
                     Text(

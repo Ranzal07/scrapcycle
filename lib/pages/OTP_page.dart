@@ -3,11 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pricelist/main.dart';
 import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import '../providers/change_provider.dart';
 
 class OtpControllerScreen extends StatefulWidget {
   final String phone;
@@ -100,7 +98,7 @@ class _OtpControllerScreenState extends State<OtpControllerScreen> {
                   verifyPhoneNumber();
                 },
                 child: Text(
-                  "Veryfying: +63 ${widget.phone}",
+                  "Verifying: +63${widget.phone}",
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 16),
                 ),

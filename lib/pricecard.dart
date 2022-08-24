@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PriceCard extends StatelessWidget {
-  PriceCard({
+  const PriceCard({
     Key? key,
     required this.examplesList,
     required this.item,

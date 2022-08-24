@@ -1,16 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pricelist/appBars/appbar.dart';
 import 'package:pricelist/category_bar.dart';
 import 'package:pricelist/firebase_crud.dart';
 import 'package:pricelist/item.dart';
-import 'package:pricelist/nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/category_provider.dart';
 
 class PriceList extends StatefulWidget {
-  PriceList({Key? key,required this.ID}) : super(key: key);
+  const PriceList({Key? key,required this.ID}) : super(key: key);
   final String ID;
 
   @override
@@ -62,7 +60,7 @@ class _PriceListState extends State<PriceList> {
               ),
             ],
           ),
-          CategoryBar(),
+          const CategoryBar(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: SizedBox(
