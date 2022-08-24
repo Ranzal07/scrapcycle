@@ -17,6 +17,15 @@ class BodyPage extends StatefulWidget {
 }
 
 class _BodyPageState extends State<BodyPage> {
+  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  // void showInSnackBar(String value) {
+  //   _scaffoldKey.currentState.SnackBar(
+  //     content: Text('Try again!'),
+  //     duration: Duration(seconds: 3),
+  //   );
+  // }
+
   DateTime date = DateTime.now();
   Stream<DocumentSnapshot> getSchedDate = FirebaseFirestore.instance
       .collection('collection-date')
@@ -56,60 +65,69 @@ class _BodyPageState extends State<BodyPage> {
 
   // DateTime datetime
   DateTime datetime = DateTime.now();
-
-  void dataSend(BuildContext ctx) async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      return;
-    }
-
-    var users = FirebaseFirestore.instance.collection('users');
-    var schedule = FirebaseFirestore.instance.collection('schedule');
-    // var address = FirebaseFirestore.instance.collection('address');
-    String userID = context.read<UserState>().getUserID;
-
-    // DocumentID: 'Admin'     Document Field: schedule-date: <timestamp> value
-    int day = datetime.day;
-    int month = datetime.month;
-    int year = datetime.year;
-    DateTime dateOfSubscription = DateTime.now();
-
-    String dateID = '$day-$month-$year';
-    int numOfDocs = 1;
-
-    // get user address
-    // print(address.doc(userID).get());
-    schedule.get().then((querySnapshot) {
-      // print('number of docs');
-      numOfDocs = querySnapshot.size + 1;
-    });
-
-    // TODO:add to schedule
-    // context.read<Address>().readAddress();
-
-    try {
-      await schedule.doc(dateID).collection('user-$numOfDocs').doc(userID).set({
-        'id': userID,
-        'dateOfSubscription': dateOfSubscription,
-      }).then((value) {
-        users
-            .doc(ctx.read<UserState>().getUserID)
-            .update({'completed?': false});
-      });
-      // Navigator.pop(context);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('dfgdfgdf'),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    }
-  }
+  int checkError = 0;
 
   @override
   Widget build(BuildContext context) {
+    void showError(int errorType) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              errorType == 1 ? 'Check your internet connection' : 'Try again!'),
+        ),
+      );
+    }
+
+    Future dataSend() async {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+      } else {
+        showError(1);
+        return;
+      }
+
+      var users = FirebaseFirestore.instance.collection('users');
+      var schedule = FirebaseFirestore.instance.collection('schedule');
+      // var address = FirebaseFirestore.instance.collection('address');
+      String userID = context.read<UserState>().getUserID;
+
+      // DocumentID: 'Admin'     Document Field: schedule-date: <timestamp> value
+      int day = datetime.day;
+      int month = datetime.month;
+      int year = datetime.year;
+      DateTime dateOfSubscription = DateTime.now();
+
+      String dateID = '$day-$month-$year';
+      int numOfDocs = 1;
+
+      // get user address
+      // print(address.doc(userID).get());
+      schedule.get().then((querySnapshot) {
+        // print('number of docs');
+        numOfDocs = querySnapshot.size + 1;
+      });
+
+      try {
+        await schedule
+            .doc(dateID)
+            .collection('user-$numOfDocs')
+            .doc(userID)
+            .set({
+          'id': userID,
+          'dateOfSubscription': dateOfSubscription,
+        }).then((value) {
+          users
+              .doc(context.read<UserState>().getUserID)
+              .update({'completed?': false});
+        });
+        // Navigator.pop(context);
+      } catch (e) {
+        showError(2);
+        return;
+      }
+    }
+
     return Column(
       children: [
         Container(
@@ -186,14 +204,7 @@ class _BodyPageState extends State<BodyPage> {
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content: Text('dfgdfgdf'),
-                                          duration: Duration(seconds: 3),
-                                        ),
-                                      );
-                                      dataSend(context);
+                                      dataSend();
                                     },
                                     child: const Text('Confirm',
                                         style: TextStyle(color: Colors.green)),
@@ -318,43 +329,3 @@ class _BodyPageState extends State<BodyPage> {
     );
   }
 }
-
-
-// dialogs
-
-// class ConfirmationAlert extends StatelessWidget {
-//   const ConfirmationAlert({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return return AlertDialog(
-//                               title: const Center(
-//                                 child: Text(
-//                                   'Confirm your collection?',
-//                                   style: TextStyle(fontWeight: FontWeight.bold),
-//                                 ),
-//                               ),
-//                               content: const SingleChildScrollView(
-//                                 child: Text(
-//                                     'By confirming this, you agree that ScrapCycle will collect your scraps on the day shown in the screen'),
-//                               ),
-//                               actions: [
-//                                 TextButton(
-//                                   onPressed: () {
-//                                     Navigator.of(context).pop();
-//                                   },
-//                                   child: const Text('Back',
-//                                       style: TextStyle(color: Colors.red)),
-//                                 ),
-//                                 TextButton(
-//                                   onPressed: () {
-//                                     dataSend();
-//                                   },
-//                                   child: const Text('Confirm',
-//                                       style: TextStyle(color: Colors.green)),
-//                                 ),
-//                               ],
-//                               elevation: 25,
-//                             );
-//   }
-// }

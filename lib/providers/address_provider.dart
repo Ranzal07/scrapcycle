@@ -17,8 +17,10 @@ class Address with ChangeNotifier {
   String _barangay = 'Brgy. Ampayon';
   String _city = 'Butuan City';
   String _moreDescription = '';
+  int _errorMessage = 0;
 
   String get roomNumber => _roomNumber;
+  int get errorMessage => _errorMessage;
   String get street => _street;
   String get barangay => _barangay;
   String get city => _city;
@@ -50,7 +52,8 @@ class Address with ChangeNotifier {
       String formBarangay,
       String formCity,
       String formDescription,
-      String uid) {
+      String uid,
+      BuildContext context) {
     users.doc(uid).set({
       'address': {
         'roomNumber': formRoomNumber,
@@ -66,7 +69,11 @@ class Address with ChangeNotifier {
       _barangay = formBarangay;
       _city = formCity;
       _moreDescription = formDescription;
+      _errorMessage = 0;
       notifyListeners();
-    }).catchError((error) => print('Failed to add user address: $error'));
+    }).catchError((error) {
+      _errorMessage = 1;
+      notifyListeners();
+    });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:pricelist/providers/address_provider.dart';
 import 'package:pricelist/providers/user_provider.dart';
@@ -12,6 +13,16 @@ class SetAddress extends StatefulWidget {
 
 class _SetAddressState extends State<SetAddress> {
   final _formkey = GlobalKey<FormState>();
+
+  void showResult(int resType) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(resType == 1
+            ? 'Check your internet connection'
+            : 'Update successful!'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +40,19 @@ class _SetAddressState extends State<SetAddress> {
         TextEditingController(text: "Butuan City");
     TextEditingController moreDescriptionController =
         TextEditingController(text: context.read<Address>().moreDescription);
+
+    void updateResult() {
+      context.read<Address>().updateAddress(
+            roomNumberController.text,
+            streetController.text,
+            barangayController.text,
+            cityController.text,
+            moreDescriptionController.text,
+            context.read<UserState>().getUserID,
+            context,
+          );
+    }
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65.0,
@@ -209,27 +233,16 @@ class _SetAddressState extends State<SetAddress> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          if (_formkey.currentState!.validate()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Completely Updated'),
-              ),
-            );
-
-            context.read<Address>().updateAddress(
-                roomNumberController.text,
-                streetController.text,
-                barangayController.text,
-                cityController.text,
-                moreDescriptionController.text,
-                context.read<UserState>().getUserID);
-            //Need to change route
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //       builder: (context) => const UserAddress()),
-            // );
+        onPressed: () async {
+          var connectivityResult = await (Connectivity().checkConnectivity());
+          if (connectivityResult == ConnectivityResult.mobile ||
+              connectivityResult == ConnectivityResult.wifi) {
+            if (_formkey.currentState!.validate()) {
+              updateResult();
+              showResult(0);
+            }
+          } else {
+            showResult(1);
           }
         },
         label: const Text('Save Changes'),
