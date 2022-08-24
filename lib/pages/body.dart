@@ -181,7 +181,7 @@ class _BodyPageState extends State<BodyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(15),
@@ -328,17 +328,7 @@ class _BodyPageState extends State<BodyPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: const Text(
-                        'We buy:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                    Container(),
                     Container(
                       alignment: Alignment.topLeft,
                       child: Row(
@@ -370,155 +360,13 @@ class _BodyPageState extends State<BodyPage> {
                     ),
                   ],
                 ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Plastics:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Wrap(
-                  spacing: 5,
-                  runSpacing: 10,
-                  children: [
-                    for (var i in plastics)
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-                        decoration: const ShapeDecoration(
-                          shape: StadiumBorder(
-                              side: BorderSide(color: Colors.black)),
-                        ),
-                        child: Text(i, style: const TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Glasses:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Wrap(
-                  spacing: 5,
-                  runSpacing: 10,
-                  children: [
-                    for (var i in glasses)
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-                        decoration: const ShapeDecoration(
-                          shape: StadiumBorder(
-                              side: BorderSide(color: Colors.black)),
-                        ),
-                        child: Text(i, style: const TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Metals:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Wrap(
-                  spacing: 5,
-                  runSpacing: 10,
-                  children: [
-                    for (var i in metals)
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-                        decoration: const ShapeDecoration(
-                          shape: StadiumBorder(
-                              side: BorderSide(color: Colors.black)),
-                        ),
-                        child: Text(i, style: const TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Batteries:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Wrap(
-                  spacing: 5,
-                  runSpacing: 10,
-                  children: [
-                    for (var i in batteries)
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-                        decoration: const ShapeDecoration(
-                          shape: StadiumBorder(
-                              side: BorderSide(color: Colors.black)),
-                        ),
-                        child: Text(i, style: const TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Electronics:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Wrap(
-                  spacing: 5,
-                  runSpacing: 10,
-                  children: [
-                    for (var i in electronics)
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-                        decoration: const ShapeDecoration(
-                          shape: StadiumBorder(
-                              side: BorderSide(color: Colors.black)),
-                        ),
-                        child: Text(i, style: const TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
+                
+  
               ],
             ),
           ),
         ),
+        Spacer(),
         Container(
           height: 150.0,
           width: double.infinity,
