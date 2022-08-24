@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, invalid_return_type_for_catch_error
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pricelist/pages/set_address.dart';
 import 'package:pricelist/providers/address_provider.dart';
-import 'package:pricelist/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeBar extends StatelessWidget with PreferredSizeWidget {

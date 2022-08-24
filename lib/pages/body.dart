@@ -2,7 +2,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pricelist/homepage_classes/add_to_database.dart';
 import 'package:pricelist/pages/set_address.dart';
 import 'package:pricelist/providers/address_provider.dart';
 import 'package:pricelist/providers/user_provider.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pricelist/buttons/category.dart';
 
 class CategoryBar extends StatefulWidget {
-  CategoryBar({Key? key}) : super(key: key);
+  const CategoryBar({Key? key}) : super(key: key);
 
   @override
   State<CategoryBar> createState() => _CategoryBarState();

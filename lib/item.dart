@@ -5,7 +5,7 @@ class Item extends StatefulWidget {
   final String examples;
   final String value;
 
-  Item(
+  const Item(
       {Key? key,
       required this.itemName,
       required this.examples,
