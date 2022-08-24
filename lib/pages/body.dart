@@ -189,12 +189,12 @@ class _BodyPageState extends State<BodyPage> {
             child: Wrap(
               children: [
                 Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 10),
                   alignment: Alignment.topCenter,
                   child: Text(
                     'Next scrap collection date:',
                     style: GoogleFonts.inter(
-                      fontSize: 15.0,
+                      fontSize: 17.0,
                     ),
                   ),
                 ),
@@ -325,43 +325,39 @@ class _BodyPageState extends State<BodyPage> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              context.read<HomeState>().changeIndex(1);
-                            },
-                            child: const Text(
-                              'See the selling price ',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                                color: Color(0XFF219653),
-                              ),
-                            ),
+                Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                      children: [
+                        TextSpan(
+                          text:
+                              "ScrapCycle buys your recyclables when you set a schedule by clicking the",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black87,
                           ),
-                          const Text(
-                            '₱',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0XFF219653),
-                            ),
+                        ),
+                        TextSpan(
+                          text: " 'Collect My Scraps' ",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Color(0xff219653),
+                            fontWeight: FontWeight.w800,
                           ),
-                        ],
-                      ),
+                        ),
+                        TextSpan(
+                          text:
+                              "button from the comfort of your home at the collection date shown.",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-                
-  
               ],
             ),
           ),

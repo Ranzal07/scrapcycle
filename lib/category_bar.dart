@@ -12,7 +12,7 @@ class _CategoryBarState extends State<CategoryBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: const [
         CategoryBtn(
           categoryName: 'Glass',

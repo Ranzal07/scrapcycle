@@ -63,13 +63,22 @@ class _SetAddressState extends State<SetAddress> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 29.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 29.0, vertical: 8.0),
                     child: Row(
                       children: const [
-                        Icon(Icons.error, color: Color(0xff219653),),
-                        Text('  We only cater Ampayon Butuan City.', style: TextStyle(
+                        Icon(
+                          Icons.error,
                           color: Color(0xff219653),
-                        ),),
+                        ),
+                        Flexible(
+                          child: Text(
+                            ' We only cater Brgy. Ampayon for now.',
+                            style: TextStyle(
+                              color: Color(0xff219653),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
