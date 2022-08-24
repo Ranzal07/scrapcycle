@@ -22,91 +22,6 @@ class _BodyPageState extends State<BodyPage> {
       .doc('Admin')
       .snapshots(); // DocumentID: 'Admin'     Document Field: schedule-date: <timestamp> value
 
-  List<String> plastics = [
-    "Plastic Bottles",
-    "Plastic Cups",
-    "Water Bottles",
-    "Coke Mismo",
-    "Sprite Mismo",
-    "250ml Royal Bottle",
-    "Monobloc Chairs",
-    "Hangers",
-    "Shampoo Bottles",
-    "Water Jugs",
-    "1.5 Litres Beverage"
-  ];
-
-  List<String> glasses = [
-    "Kulafu",
-    "Tanduay",
-    "Garapa",
-    "Ketchup",
-    "Mallorca",
-    "Coke Litro",
-    "Kasalo/Pepsi",
-    "RedHorse Litro",
-    "Coke Litro w/ Case",
-    "Pepsi Litro w/ Case",
-    "RedHorse Litro w/ Case",
-    "Coke Small",
-    "Pepsi Small",
-    "Cobra",
-    "RedHorse Small",
-  ];
-
-  List<String> metals = [
-    "Assorted",
-    "Solid",
-    "Light Bulbs (Pundido)",
-    "Tin Can",
-    "Sin Roof",
-    "Alloy (Mixed)",
-    "Cooking Pot",
-    "Aluminum Can",
-    "Lead",
-    "Copper",
-    "Brass",
-    "Light/Thin Metals",
-    "Heavy/Thick Metals",
-    "Steel Plate Metal",
-    "Sardines Can",
-    "Tuna Can",
-    "Corrugated Roofing Material",
-    "Steel/Bronze",
-    "Steel/Bronze (Mixed)",
-    "Caldero",
-    "Beverage Cans",
-    "Spray Cans",
-    "Lead Sinker (Tingga)",
-    "Copper Tubing",
-    "Wlectric Cords",
-    "Locks",
-    "Hinges",
-    "Zippers",
-    "Drawer Knobs",
-  ];
-
-  List<String> batteries = [
-    "Motorcycle Battery",
-    "Car Battery",
-    "MCB",
-    "5 Plates",
-    "7 Plates",
-    "9 Plates",
-    "11 Plates",
-    "13 Plates",
-    "17 Plates",
-    "21 Plates",
-  ];
-
-  List<String> electronics = [
-    "TV Board",
-    "M2",
-    "Single Check",
-    "Double",
-    "Radiator",
-  ];
-
   String extractWeekday(int weekdayNum) {
     String weekday = '';
 
@@ -208,10 +123,13 @@ class _BodyPageState extends State<BodyPage> {
                         DateTime scheduleDate =
                             dateSnapshot['schedule-date'].toDate();
                         datetime = scheduleDate;
+
+                        String scheduleDisplay = dateSnapshot['displayString'];
+
                         return Container(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            '${DateFormat('MMMM').format(scheduleDate)} ${scheduleDate.day}, ${extractWeekday(scheduleDate.weekday)}',
+                            scheduleDisplay,
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
