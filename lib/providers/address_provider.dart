@@ -34,6 +34,11 @@ class Address with ChangeNotifier {
         _street = jsonAddress['street'] ?? '';
         _barangay = jsonAddress['barangay'] ?? '';
         _moreDescription = jsonAddress['moreDescription'] ?? '';
+      } else {
+        _roomNumber = '';
+        _street = '';
+        _barangay = '';
+        _moreDescription = '';
       }
     }
     notifyListeners();
