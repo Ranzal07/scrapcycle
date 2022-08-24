@@ -37,6 +37,7 @@ dependencies:
   intl: ^0.17.0
   firebase_auth: ^3.6.3
   pinput: ^1.2.0
+  connectivity_plus: ^2.3.6+1
 
 dev_dependencies:
   flutter_test:

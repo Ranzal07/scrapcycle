@@ -7,6 +7,7 @@ import 'package:pricelist/providers/address_provider.dart';
 import 'package:pricelist/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pricelist/providers/home_provider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class BodyPage extends StatefulWidget {
   const BodyPage({Key? key, required this.id}) : super(key: key);
@@ -56,7 +57,13 @@ class _BodyPageState extends State<BodyPage> {
   // DateTime datetime
   DateTime datetime = DateTime.now();
 
-  void dataSend() async {
+  void dataSend(BuildContext ctx) async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      return;
+    }
+
     var users = FirebaseFirestore.instance.collection('users');
     var schedule = FirebaseFirestore.instance.collection('schedule');
     // var address = FirebaseFirestore.instance.collection('address');
@@ -66,6 +73,7 @@ class _BodyPageState extends State<BodyPage> {
     int day = datetime.day;
     int month = datetime.month;
     int year = datetime.year;
+    DateTime dateOfSubscription = DateTime.now();
 
     String dateID = '$day-$month-$year';
     int numOfDocs = 1;
@@ -80,18 +88,24 @@ class _BodyPageState extends State<BodyPage> {
     // TODO:add to schedule
     // context.read<Address>().readAddress();
 
-    schedule
-        .doc(dateID)
-        .collection('user-$numOfDocs')
-        .doc(userID)
-        .set({'id': userID});
-
-    // TODO:change user collection pending status
-    users
-        .doc(context.read<UserState>().getUserID)
-        .update({'completed?': false});
-
-    Navigator.pop(context);
+    try {
+      await schedule.doc(dateID).collection('user-$numOfDocs').doc(userID).set({
+        'id': userID,
+        'dateOfSubscription': dateOfSubscription,
+      }).then((value) {
+        users
+            .doc(ctx.read<UserState>().getUserID)
+            .update({'completed?': false});
+      });
+      // Navigator.pop(context);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('dfgdfgdf'),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   @override
@@ -171,7 +185,15 @@ class _BodyPageState extends State<BodyPage> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      dataSend();
+                                      Navigator.of(context).pop();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text('dfgdfgdf'),
+                                          duration: Duration(seconds: 3),
+                                        ),
+                                      );
+                                      dataSend(context);
                                     },
                                     child: const Text('Confirm',
                                         style: TextStyle(color: Colors.green)),

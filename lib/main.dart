@@ -51,7 +51,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ChangePage()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'ScrapCycle',
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
