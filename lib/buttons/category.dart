@@ -48,7 +48,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
             shape: BoxShape.circle,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(9.0),
+            padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
                 context.read<CategoryState>().setType(widget.typeId);
@@ -60,7 +60,7 @@ class _CategoryBtnState extends State<CategoryBtn> {
                 height: categorySize,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(widget.imageBtn),
+                    image: AssetImage(widget.imageBtn),
                     fit: BoxFit.cover,
                     colorFilter: colored,
                   ),

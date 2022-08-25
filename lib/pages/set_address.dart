@@ -199,7 +199,7 @@ class _SetAddressState extends State<SetAddress> {
                         //Container for more description
                         Container(
                           margin:
-                              const EdgeInsets.fromLTRB(8.0, 11.0, 8.0, 50.0),
+                              const EdgeInsets.fromLTRB(8.0, 11.0, 8.0, 75.0),
                           child: TextFormField(
                             controller: moreDescriptionController,
                             keyboardType: TextInputType.multiline,

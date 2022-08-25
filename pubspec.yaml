@@ -72,6 +72,11 @@ flutter:
     - assets/images/1_sign_in.png
     - assets/data/pricelist.json
     - assets/images/scrapcycle-logo.png
+    - assets/images/categories/battery.png
+    - assets/images/categories/ewaste.png
+    - assets/images/categories/glass.jpeg
+    - assets/images/categories/metals.jpg
+    - assets/images/categories/plastic.jpeg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

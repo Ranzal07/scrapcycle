@@ -21,21 +21,21 @@ class CategoryState with ChangeNotifier {
   ];
 
   List<String> _values = [
-    "0.40 / piece",
     "0.50 / piece",
+    "0.75 / piece",
     "0.60 / piece",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.80 / piece",
-    "0.80 / piece",
-    "0.40 / piece",
-    "28.00 / set",
-    "28.00 / set",
-    "28.00 / set",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.10 / piece",
-    "0.25 / piece",
+    "0.15 / piece",
+    "0.15 / piece",
+    "1.00 / piece",
+    "1.00 / piece",
+    "0.50 / piece",
+    "35.00 / set",
+    "35.00 / set",
+    "35.00 / set",
+    "0.15 / piece",
+    "0.15 / piece",
+    "0.15 / piece",
+    "0.35 / piece",
   ];
 
   List<String> _examples = [

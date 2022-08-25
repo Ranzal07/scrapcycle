@@ -37,7 +37,6 @@ class Profile extends StatelessWidget {
                           image: NetworkImage(
                               'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Avatar_icon_green.svg/1200px-Avatar_icon_green.svg.png'),
                         ),
-              
                       ),
                     ),
                     Text(
@@ -88,17 +87,27 @@ class ChangeAddress extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Row(
-          children: const <Widget>[
-            Image(
-              image: NetworkImage('https://i.ibb.co/z69rwvk/Group-12517.png'),
+          children: <Widget>[
+            Container(
+              width: 40.0,
+              height: 40.0,
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.pin_drop,
+                color: Colors.lightGreen,
+              ),
             ),
-            SizedBox(width: 20),
-            Text(
+            const SizedBox(width: 20),
+            const Text(
               "Change Address",
               style: TextStyle(fontSize: 16, color: Colors.black),
             ),
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.arrow_forward_ios,
               size: 16,
               color: Colors.black,
@@ -128,17 +137,28 @@ class LogOut extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Row(
-          children: const <Widget>[
-            Image(
-              image: NetworkImage('https://i.ibb.co/B6yXgJ4/Group-12334-1.png'),
+          children: <Widget>[
+            Container(
+              width: 40.0,
+              height: 40.0,
+              // padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.logout,
+                color: Colors.lightGreen,
+                size: 20.0,
+              ),
             ),
-            SizedBox(width: 20),
-            Text(
+            const SizedBox(width: 20),
+            const Text(
               "Log out",
               style: TextStyle(fontSize: 16, color: Colors.black),
             ),
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.arrow_forward_ios,
               size: 16,
               color: Colors.black,

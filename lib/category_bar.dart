@@ -17,30 +17,27 @@ class _CategoryBarState extends State<CategoryBar> {
         CategoryBtn(
           categoryName: 'Glass',
           typeId: 1,
-          imageBtn:
-              'https://images.pexels.com/photos/4042772/pexels-photo-4042772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageBtn: 'assets/images/categories/glass.jpeg',
         ),
         CategoryBtn(
             categoryName: 'Plastic',
             typeId: 2,
-            imageBtn:
-                'https://images.pexels.com/photos/2547565/pexels-photo-2547565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+            imageBtn: 'assets/images/categories/plastic.jpeg'),
         CategoryBtn(
           categoryName: 'Metal',
           typeId: 3,
-          imageBtn:
-              'https://images.pexels.com/photos/4593026/pexels-photo-4593026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          imageBtn: 'assets/images/categories/metals.jpg',
         ),
         CategoryBtn(
-            categoryName: 'Battery',
-            typeId: 4,
-            imageBtn:
-                'https://s.alicdn.com/@sc04/kf/U01beb17b43164ab49f3f347fa77a4e04i.jpg_300x300.jpg'),
+          categoryName: 'Battery',
+          typeId: 4,
+          imageBtn: 'assets/images/categories/battery.png',
+        ),
         CategoryBtn(
-            categoryName: 'E-Waste',
-            typeId: 5,
-            imageBtn:
-                'https://5.imimg.com/data5/LK/QW/GLADMIN-6387176/printed-circuit-boards-scrap-500x500.png'),
+          categoryName: 'E-Waste',
+          typeId: 5,
+          imageBtn: 'assets/images/categories/ewaste.png',
+        ),
       ],
     );
   }
